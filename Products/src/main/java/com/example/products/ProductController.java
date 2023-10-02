@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 
 @Controller
 public class ProductController {
@@ -108,5 +110,17 @@ public class ProductController {
         model.addAttribute("search", productService.findProductByName(name));
         return "filters";
     }
+
+    @GetMapping(path = {"/search"})
+    public String search (Product product, Model model, String keyword) {
+        if(keyword!=null) {
+            List<Product> list = productService.findProductsByKeyword(keyword);
+            model.addAttribute("productList", list);
+        }else {
+            List<Product> list = productService.getAllProducts();
+            model.addAttribute("productList", list);}
+        return "productList";
+    }
+
 
 }

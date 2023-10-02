@@ -1,6 +1,8 @@
 package com.example.products;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,11 +16,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
 
 
-    @Override
-    List<Product> findAllById(Iterable<Long> longs);
-
-
     Optional<Product> findById(Long id);
     List<Product> findByName(String name);
+
+    @Query(value = "select * from product p where p.name like %:keyword% or p.category like %:keyword%", nativeQuery = true)
+    List<Product> findByKeyword(@Param("keyword") String keyword);
+
 
 }

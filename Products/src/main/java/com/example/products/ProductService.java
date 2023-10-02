@@ -85,4 +85,10 @@ public class ProductService {
         return productRepository.findByName(name).get(0);
 
     }
+
+    public List<Product> findProductsByKeyword(String keyword) {
+        return productRepository.findByKeyword(keyword);
+
+    }
+
 }
