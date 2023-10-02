@@ -20,6 +20,10 @@
 
       </div>
       <div class="input-group mt-2">
+        <label class="input-group-text">Description</label>
+        <input class = "form-control" name ="description" type="text" th:value= "${productItem.getDescription()}">
+      </div>
+      <div class="input-group mt-2">
         <label class="input-group-text">Price</label>
         <input class = "form-control" name ="price" type="text" th:value= "${productItem.getPrice()}">
       </div>
