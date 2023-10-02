@@ -38,6 +38,34 @@ public class ProductController {
         return "productList";
     }
 
+    @GetMapping("/sort-product-by-description")
+    public String displayUserListSortedByDescription(@RequestParam(required = false) String message,
+                                                     @RequestParam(required = false) String error,
+                                                     Model model) {
+        model.addAttribute("message", message);
+        model.addAttribute("error", error);
+        model.addAttribute("productList", productService.getProductsSortedByDescription());
+        return "productList";
+    }
+    @GetMapping("/sort-product-by-category")
+    public String displayUserListSortedByCategory(@RequestParam(required = false) String message,
+                                                  @RequestParam(required = false) String error,
+                                                  Model model) {
+        model.addAttribute("message", message);
+        model.addAttribute("error", error);
+        model.addAttribute("productList", productService.getProductsSortedByCategory());
+        return "productList";
+    }
+    @GetMapping("/sort-product-by-price")
+    public String displayUserListSortedByPrice(@RequestParam(required = false) String message,
+                                               @RequestParam(required = false) String error,
+                                               Model model) {
+        model.addAttribute("message", message);
+        model.addAttribute("error", error);
+        model.addAttribute("productList", productService.getProductsSortedByPrice());
+        return "productList";
+    }
+
     @GetMapping("/add-product")
     public String displayAddProductPage() {
         return "addProduct";

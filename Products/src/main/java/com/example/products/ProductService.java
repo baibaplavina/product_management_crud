@@ -1,8 +1,11 @@
 package com.example.products;
 
+import com.example.products.comparators.ProductComparatorByCategory;
+import com.example.products.comparators.ProductComparatorByDescription;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,6 +31,17 @@ public class ProductService {
         return list.stream().sorted(Comparator.comparing(Product::getPrice)).collect(Collectors.toList());
 
     }
+    public List<Product> getProductsSortedByDescription(){
+        List<Product> listByDescription = productRepository.findAll();
+        Collections.sort(listByDescription, new ProductComparatorByDescription());
+        return listByDescription;
+    }
+    public List<Product> getProductsSortedByCategory(){
+        List<Product> listByCategory = productRepository.findAll();
+        Collections.sort(listByCategory, new ProductComparatorByCategory());
+        return listByCategory;
+    }
+
 
 
 
